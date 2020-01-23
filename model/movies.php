@@ -25,7 +25,7 @@
     
 
     try{
-        $db = new PDO('mysql:host=localhost;dbname=dbFilms;charset=utf8', 'root', '12345');
+        $db = new PDO('mysql:host=localhost;dbname=rodriguec_dbfilms;charset=utf8', 'rodriguec', 'llv3870HqDD52A==');
         
         
         if($search == "tous"){

@@ -15,8 +15,8 @@ AddType image/jpeg .jpeg .jpg .jpe .JPG
 # RewriteBase /movie-website/fork/
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_URI} !/movie-website/fork/$
-RewriteRule ^(.*)$ /movie-website/fork/ [R,L]
+RewriteCond %{REQUEST_URI} !/
+RewriteRule ^(.*)$ / [R,L]
 
 #Redirect /movie-website/fork/view/ /movie-website/fork/
 #RewriteCond %{REQUEST_URI} /movie-website/fork/view/

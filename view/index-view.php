@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
      <!-- metas facebook -->
-     <meta property="og:url" content="http://rodriguec.promo-vesoul33.codeur.online/cinegit/index-view.php" />
+     <meta property="og:url" content="https://rodriguec.promo-vesoul33.codeur.online/cinegit/index.php" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content="cinegit" />
       <meta property="og:description" content="Site d'info cinéma" />
@@ -23,7 +23,7 @@
   
       <!-- meta mots clés -->
   
-      <meta name="Keywords" content="cinema,description,film,action,aventure,comèdie">
+      <meta name="Keywords" content="cinema,description,film,action,aventure,comèdie,guerre, historique,peplum science fiction">
     <title>Cinégit</title>
 
     <!-- Bootstrap CSS -->
