@@ -1,11 +1,30 @@
 <?php  //echo $_SERVER['REQUEST_URI'];?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+     <!-- metas facebook -->
+     <meta property="og:url" content="http://rodriguec.promo-vesoul33.codeur.online/cinegit/index-view.php" />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="cinegit" />
+      <meta property="og:description" content="Site d'info cinéma" />
+      <meta property="og:image" content="http://rodriguec.promo-vesoul33.codeur.online/cinegit/medias/affiche-7.jpg.jpg" />
+  
+      <!-- metas twitter -->
+      <meta name="twitter:description" content="Site d'info cinéma">
+      <meta name="twitter:title" content="cinegit">
+      <meta name="twitter:site" content="cinegit">
+      <meta name="twitter:image"
+          content="http://rodriguec.promo-vesoul33.codeur.online/cinegit/medias/affiche-7.jpg" />
+      <meta name="twitter:creator" content="automotive">
+  
+      <!-- meta mots clés -->
+  
+      <meta name="Keywords" content="cinema,description,film,action,aventure,comèdie">
+    <title>Cinégit</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
