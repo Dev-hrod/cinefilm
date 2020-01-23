@@ -1,3 +1,4 @@
+<!-- <base href="/movie-website/fork/"> -->
 <?php
 
 // $request = $_SERVER['REQUEST_URI'];
@@ -25,13 +26,16 @@ else{
 
 switch ($request) {
     case '/movie-website/fork/' :
-        require __DIR__ . '/view/index-view.php';
+        // require __DIR__ . '/view/index-view.php';
+        require __DIR__ . '/controller/controller.php';
         break;
     case '' :
-        require __DIR__ . '/view/index-view.php';
+        // require __DIR__ . '/view/index-view.php';
+        require __DIR__ . '/controller/controller.php';
         break;
     case '/' :
-        require __DIR__ . '/view/index-view.php';
+        // require __DIR__ . '/view/index-view.php';
+        require __DIR__ . '/controller/controller.php';
         break;
     //si $request est un nombre, alors fait en sorte de chercher et d'afficher la page du film avec cette id
     case is_numeric($request) :
@@ -40,9 +44,12 @@ switch ($request) {
         // require __DIR__ . '/model/movies.php';
         // require __DIR__ . '/view/film.php';
         break;
+    //envoie sur la page d'accueil index-view.php par default
     default:
-        http_response_code(404);
-        require __DIR__ . '/view/404.php';
+        // http_response_code(404);
+        // require __DIR__ . '/view/404.php';
+        require __DIR__ . '/controller/controller.php';
+        // require __DIR__ . '/view/index-view.php';
         break;
 }
 

@@ -18,7 +18,7 @@
 
 <body>
     <header>
-    <div class="container-fluid header-box">
+        <div class="container-fluid header-box">
             <div class="container">
                 <div class="row">
                     <div class="col-6">
@@ -78,7 +78,7 @@
         <div class="container-fluid mt-20px">
             <div class="container">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 text-center">
                         <h1><?php echo $allData[0]["titre"]; ?></h1>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                             tant que vous enregistrez les images au bonne endroit et avec le nom "affiche-" + l'id du film 
                             qu'il a dans la database-->
                         <!-- ex : Bad Boys; id = 1  donc "affiche-1" -->
-                        <div class="container-affiches">
+                        <div class="">
                             <p><img src="<?= $lienAffiche ?>" alt="affiche film"
                                 width="<?= $imgWidth ?>" height="<?= $imgHeight ?>" class="affiches"></p>
                         </div>
@@ -97,12 +97,12 @@
                 </div>
 
                 <div class="row mt-20px mb-40px">
-                    <div class="col-12">
+                    <div class="col-4 offset-4">
                         <div class="icon-bande-annonce">BANDE ANNONCE</div>
                     </div>
                 </div>
 
-                <div class="row description-box mt-20px">
+                <div class="row description-box mt-20px mb-40px">
                     <div class="col-12">
                         <p>Année de sortie : <?php echo $allData[0]["annee-sortie"]; ?></p>
                         <p>Réalisateur : <?php echo $realisateur; ?></p>

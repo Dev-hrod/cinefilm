@@ -1,28 +1,81 @@
 <!-- Création du models movies.php qui contiendrait toutes fonctions des requêtes sur la table films -->
 <?php
     // print_r($_POST);
-    $search = $_GET['filmId'];
+    //verif si la page demandé est un film specifique avec un id specifique
+    if(isset($_GET['filmId'])){
+        $search = $_GET['filmId'];
+    }
+    //sinon, verif si la demande est d'afficher des films par genre
+    elseif(isset($_GET['genre'])){
+
+        if($_GET['genre'] == "tous"){
+            $search = "tous";
+        }
+        else{
+            $search = "genre";
+            $nomGenre = $_GET['genre'];
+        }
+        
+    }
+    //sinon, par default, afficher tous les films
+    else{
+        $search = "tous";
+    }
+    
+    
 
     try{
         $db = new PDO('mysql:host=localhost;dbname=dbFilms;charset=utf8', 'root', '12345');
         
+        
+        if($search == "tous"){
+            $answer = $db->prepare('SELECT * FROM `films`
+            INNER JOIN films_has_genre ON films_has_genre.films_id = films.id
+            INNER JOIN genre ON genre.idgenre = films_has_genre.genre_idgenre
+            INNER JOIN films_has_realisateur ON films_has_realisateur.films_id = films.id
+            INNER JOIN realisateur ON realisateur.idrealisateur = films_has_realisateur.realisateur_idrealisateur
+            GROUP BY titre
+            ORDER BY `films`.`id` ASC');
+            
+            
+        }
+        elseif($search == "genre"){
+            $answer = $db->prepare('SELECT * FROM `films`
+            INNER JOIN films_has_genre ON films_has_genre.films_id = films.id
+            INNER JOIN genre ON genre.idgenre = films_has_genre.genre_idgenre
+            INNER JOIN films_has_realisateur ON films_has_realisateur.films_id = films.id
+            INNER JOIN realisateur ON realisateur.idrealisateur = films_has_realisateur.realisateur_idrealisateur
+            WHERE nomGenre = :filmGenre
+            GROUP BY titre');
 
-        //------méthode plus sécurisé contre injection SQL------
-        // $answer = $db->prepare('SELECT * FROM `films` WHERE id = :filmId');
-        $answer = $db->prepare('SELECT * FROM `films`
-        INNER JOIN films_has_genre ON films_has_genre.films_id = films.id
-        INNER JOIN genre ON genre.idgenre = films_has_genre.genre_idgenre
-        INNER JOIN films_has_realisateur ON films_has_realisateur.films_id = films.id
-        INNER JOIN realisateur ON realisateur.idrealisateur = films_has_realisateur.realisateur_idrealisateur
-        WHERE id = :filmId
-        ORDER BY `films`.`id` ASC');
+            $filmGenre = $nomGenre;
+            $answer->bindParam(':filmGenre', $filmGenre, PDO::PARAM_STR);
+        }
+        else{
+            //------méthode plus sécurisé contre injection SQL------
+            // $answer = $db->prepare('SELECT * FROM `films` WHERE id = :filmId');
+            $answer = $db->prepare('SELECT * FROM `films`
+            INNER JOIN films_has_genre ON films_has_genre.films_id = films.id
+            INNER JOIN genre ON genre.idgenre = films_has_genre.genre_idgenre
+            INNER JOIN films_has_realisateur ON films_has_realisateur.films_id = films.id
+            INNER JOIN realisateur ON realisateur.idrealisateur = films_has_realisateur.realisateur_idrealisateur
+            WHERE id = :filmId
+            ORDER BY `films`.`id` ASC');
 
-        //cette partie permet de faire fonctionner la recherche sql 'LIKE'
-        $filmId = $search;
-        $answer->bindParam(':filmId', $filmId, PDO::PARAM_STR);
-
+            //cette partie permet de faire fonctionner la recherche sql 'LIKE'
+            $filmId = $search;
+            $answer->bindParam(':filmId', $filmId, PDO::PARAM_INT);
+        }
+        
+        
         $answer->execute();
         $allData = $answer->fetchAll();
+        //verifie s'il a bien récupéré une row du film dans notre base de donnée
+        //si c'est égal a 0, c'est que la page/le film demandé n'existe pas. Donc, page 404 et on arrete tous;
+        if (count($allData) === 0){
+            require __DIR__ . '/../view/404.php';
+            die();
+        }
 
         //section verif et ajout de genre(s) (si il y en a plusieurs, active boucle)
         $genre = $allData[0]["nomGenre"];
